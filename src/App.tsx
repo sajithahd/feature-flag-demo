@@ -8,17 +8,13 @@ import { useFeatureFlag } from './featureFlags/useFeatureFlag';
  * Shows different content based on the newDashboard feature flag state
  */
 const App: React.FC = () => {
-  // Use the feature flag hook to check if the new dashboard feature is enabled
-  const isNewDashboardEnabled = useFeatureFlag('newDashboard');
+  const isDashboardEnabled = useFeatureFlag('enableDashboard');
 
   return (
     <div>
       {/* Main welcome heading */}
       <h1>Welcome!</h1>
-      
-      {/* Conditional rendering based on feature flag */}
-      {isNewDashboardEnabled ? (
-        // Show this content when the new dashboard feature is enabled
+      {isDashboardEnabled ? (
         <p>New Dashboard is available 🎉</p>
       ) : (
         // Show this content when the new dashboard feature is disabled

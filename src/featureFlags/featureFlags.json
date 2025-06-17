@@ -1,5 +1,5 @@
 {
-    "newDashboard": true,
-    "betaUser": false
+    "enableDashboard": true,
+    "enableProxyUser": false
   }
   
