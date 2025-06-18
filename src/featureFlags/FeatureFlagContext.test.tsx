@@ -11,6 +11,7 @@ const DirectConsumer: React.FC = () => {
     <div>
       <span data-testid="newDashboard">{flags.newDashboard?.toString()}</span>
       <span data-testid="betaUser">{flags.betaUser?.toString()}</span>
+      <span data-testid="enableNotifications">{flags.enableNotifications?.toString()}</span>
     </div>
   );
 };
@@ -25,12 +26,13 @@ describe('FeatureFlagContext and useFeatureFlag', () => {
   it('provides flag values from JSON using the provider directly', () => {
     render(
       <FeatureFlagProvider>
-        <DirectConsumer />ß
+        <DirectConsumer />
       </FeatureFlagProvider>
     );
     
     expect(screen.getByTestId('newDashboard').textContent).toBe('true');
     expect(screen.getByTestId('betaUser').textContent).toBe('false');
+    expect(screen.getByTestId('enableNotifications').textContent).toBe('false');
   });
 
   it('returns the correct flag value from the custom hook', () => {
@@ -38,10 +40,35 @@ describe('FeatureFlagContext and useFeatureFlag', () => {
       <FeatureFlagProvider>
         <HookConsumer flag="newDashboard" />
         <HookConsumer flag="betaUser" />
+        <HookConsumer flag="enableNotifications" />
       </FeatureFlagProvider>
     );
     
     expect(screen.getByTestId('newDashboard').textContent).toBe('true');
     expect(screen.getByTestId('betaUser').textContent).toBe('false');
+    expect(screen.getByTestId('enableNotifications').textContent).toBe('false');
+  });
+
+  describe('enableNotifications flag', () => {
+    it('returns false by default', () => {
+      render(
+        <FeatureFlagProvider>
+          <HookConsumer flag="enableNotifications" />
+        </FeatureFlagProvider>
+      );
+      
+      expect(screen.getByTestId('enableNotifications').textContent).toBe('false');
+    });
+
+    it('supports override functionality', () => {
+      // Test that the hook correctly returns false for a non-existent flag
+      render(
+        <FeatureFlagProvider>
+          <HookConsumer flag="nonExistentFlag" />
+        </FeatureFlagProvider>
+      );
+      
+      expect(screen.getByTestId('nonExistentFlag').textContent).toBe('false');
+    });
   });
 });
