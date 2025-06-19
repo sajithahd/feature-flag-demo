@@ -1,5 +1,6 @@
 {
     "enableDashboard": true,
-    "enableProxyUser": false
+    "enableProxyUser": false,
+    "enableNotifications": false
   }
   
