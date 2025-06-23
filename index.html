@@ -1,12 +1,25 @@
+<!-- HTML5 Document Type Declaration - tells the browser this is an HTML5 document -->
 <!DOCTYPE html>
+
+<!-- Root HTML element with language set to English for accessibility and SEO -->
 <html lang="en">
   <head>
+    <!-- Character encoding declaration - ensures proper text rendering for international characters -->
     <meta charset="UTF-8" />
+    
+    <!-- Responsive viewport meta tag - ensures proper scaling on mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Page title that appears in browser tab and search engine results -->
     <title>Feature Flags Demo</title>
   </head>
   <body>
+    <!-- Root container where the React application will be mounted -->
+    <!-- This div serves as the entry point for the entire React component tree -->
     <div id="root"></div>
+    
+    <!-- Main application script - loads the TypeScript/React entry point -->
+    <!-- The 'type="module"' attribute enables ES6 module syntax -->
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
